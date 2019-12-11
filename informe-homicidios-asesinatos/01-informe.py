@@ -46,12 +46,14 @@ edad_perpetrador = dataframe["Perpetrator Age"].value_counts()
 raza_perpetrador = dataframe["Perpetrator Race"].value_counts()
 etnia_perpetrador = dataframe["Perpetrator Ethnicity"].value_counts()
 relacion = dataframe["Relationship"].value_counts()
-arma = dataframe["Weapon"].value_counts()
+groupby_arma = dataframe.groupby("Perpetrator Sex")["Weapon"]
+print(groupby_arma)
 
 #PROMEDIO
 #Rangos de edad victima
 #Rangos de edad perpetrador
 # Hombres --> Armas de preferencia
+
 # Mujeres --> Armas de preferencia
 # Femicidios --> Hombre, Mujer, Husband/Wife
 # Cuantos casos resueltos para el rango de edades mas frecuente
