@@ -16,8 +16,7 @@ position4 = (300, 90)
 COLOR_CIRCULO = pygame.Color(71, 98, 79)
 COLOR_BORDE = pygame.Color(82, 173, 156)
 # FIN COLORES
-pygame.draw.circle(circle, BORDE_GUIA, (radio_borde, radio_borde), radio_borde, 5)
-pygame.draw.circle(circle_filled, RED, (radius, radius), radius)
+
 while not done:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -37,6 +36,6 @@ def dibujar_circulo(tamanio, radio, borde = 5):
 		pygame.draw.circle(circle, COLOR_BORDE, (radio, radio), radio, borde)
 	else:
 		pygame.draw.circle(circle, COLOR_CIRCULO, (radio, radio), radio)
-	
+	return circle
 	
 	
