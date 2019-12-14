@@ -11,10 +11,11 @@ position = (100,100)
 position2 = (200,70)
 position3 = (250, 140)
 position4 = (300, 90)
-RED = pygame.Color(71, 98, 79)
-BORDE_GUIA = pygame.Color(82, 173, 156)
-circle = pygame.Surface(size_borde)
-circle_filled = pygame.Surface(size)
+
+# COLORES
+COLOR_CIRCULO = pygame.Color(71, 98, 79)
+COLOR_BORDE = pygame.Color(82, 173, 156)
+# FIN COLORES
 pygame.draw.circle(circle, BORDE_GUIA, (radio_borde, radio_borde), radio_borde, 5)
 pygame.draw.circle(circle_filled, RED, (radius, radius), radius)
 while not done:
@@ -30,4 +31,12 @@ while not done:
 	pygame.display.update()
 	pygame.display.flip()
 
+def dibujar_circulo(tamanio, radio, borde = 5):
+	circle = pygame.Surface(tamanio)	
+	if(borde):
+		pygame.draw.circle(circle, COLOR_BORDE, (radio, radio), radio, borde)
+	else:
+		pygame.draw.circle(circle, COLOR_CIRCULO, (radio, radio), radio)
+	
+	
 	
