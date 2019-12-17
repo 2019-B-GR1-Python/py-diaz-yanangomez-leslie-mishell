@@ -12,10 +12,7 @@ import os
 import sqlite3
 import xlsxwriter
 
-workbook = xlsxwriter.Workbook(path_excel_colores)
-
-
-path_guardado_bin = "L://Familia//Documents//2019B-OCTAVOSEMESTRE//Python//py-diaz-yanangomez-leslie-mishell//clases//05-pandas//data//artwork_data_bin.pickle"
+path_guardado_bin = "C://Users//USRBET//Documents//py-diaz-yanangomez-leslie-mishell//clases//05-pandas//data//artwork_data_bin.pickle"
 dataframe = pd.read_pickle(path_guardado_bin)
 df = dataframe.iloc[49999:50100,:].copy()
 
@@ -25,13 +22,13 @@ df = dataframe.iloc[49999:50100,:].copy()
 # 3)SQL
 
 # EXCEL
-path_excel = 'L://Familia//Documents//2019B-OCTAVOSEMESTRE//Python//py-diaz-yanangomez-leslie-mishell//clases//05-pandas//data//mi_dataframe_completo.xlsx'
+path_excel = 'C://Users//USRBET//Documents//py-diaz-yanangomez-leslie-mishell//clases//05-pandas//data//mi_dataframe_completo.xlsx'
 df.to_excel(path_excel, index=False)
 columnas = ['artist', 'title', 'year']
 df.to_excel(path_excel, columns=columnas)
 
 # - Multiples hojas de trabajo (en Excel)
-path_excel_multiple = 'L://Familia//Documents//2019B-OCTAVOSEMESTRE//py-diaz-yanangomez-leslie-mishell//clases//05-pandas//data//mi_dataframe_multiple.xlsx'
+path_excel_multiple = 'C://Users//USRBET//Documents//py-diaz-yanangomez-leslie-mishell//clases//05-pandas//data//mi_dataframe_multiple.xlsx'
 writer = pd.ExcelWriter(path_excel_multiple, 
                         engine = 'xlsxwriter')
 
@@ -50,7 +47,7 @@ writer.save()
 
 num_artistas = df['artist'].value_counts()
 
-path_excel_colores = 'L://Familia//Documents//2019B-OCTAVOSEMESTRE//py-diaz-yanangomez-leslie-mishell//clases//05-pandas//data//mi_dataframe_colores.xlsx'
+path_excel_colores = 'C://Users//USRBET//Documents//py-diaz-yanangomez-leslie-mishell//clases//05-pandas//data//mi_dataframe_colores.xlsx'
 writer = pd.ExcelWriter(path_excel_colores, 
                         engine = 'xlsxwriter')
 
@@ -71,19 +68,18 @@ formato_artista = {
 
 hoja_artistas.conditional_format(rango_celdas, formato_artista)
 
-chart = workbook.add_chart({'type': 'line'})
-
-# Add a series to the chart.
-chart.add_series({'values': num_artistas})
-
-# Insert the chart into the worksheet.
-hoja_artistas.insert_chart('Artistas', chart)
-writer.save()
 
 
+#### SQL #####
 
+with sqlite3.connect('bdd_artist.db') as conexion:
+    dataframe.to_sql('py_artistas', conexion)
+    
+###  JSON ####
+df.to_json('artistas.json')
 
-
+### json con formato aceptable: orientado a tabla ###
+df.to_json('artistas_tabla.json', orient = 'table')
 
 
 
