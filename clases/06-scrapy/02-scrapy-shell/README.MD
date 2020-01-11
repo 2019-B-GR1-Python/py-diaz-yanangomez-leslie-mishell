@@ -60,3 +60,7 @@ o se utiliza el metodo `extract_first()`
 #### Extraer texto de una clase dentro de otra clase
 
 ![]('./resources/extract-class-into-class.PNG')
+
+#### Extraer texto de una propiedad de una etiqueta
+
+![]('./resources/extract-atrib-label.PNG')
