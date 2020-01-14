@@ -4,6 +4,7 @@ class IntroSpider(scrapy.Spider):
     #Se define el nombre de la araña
     name="introduccion_spider"
     #Se definen las urls a visitar
+    url_base = "http://books.toscrape.com/catalogue/category/books/"
     urls = [
         "http://books.toscrape.com/catalogue/category/books/travel_2/index.html"
     ]
@@ -13,9 +14,13 @@ class IntroSpider(scrapy.Spider):
             yield scrapy.Request(url=url) # yield--> Esperar para que se complete la linea (no sea asincrona)
 
     def parse(self, response):
-        self.urls = response.css("div.side_categories > ul > li > ul > li > a::attr(href)").extract()
+        books_urls = response.css("div.side_categories > ul > li > ul > li > a::attr(href)").extract()
+        
         def priceToFloat(price):
             return float(price[1:])
+        def transformBooksToLink(book_link):
+            book_link.replace("../", "")
+
         etiqueta_contenedora = response.css('article.product_pod')
         titulos = etiqueta_contenedora.css("h3 > a::text").extract()
         precios = etiqueta_contenedora.css("div.product_price > p.price_color::text").extract()
@@ -24,7 +29,7 @@ class IntroSpider(scrapy.Spider):
         print(titulos)
         print(precios_float)
         print(links_imagenes)
-        print(self.urls)
+        print(books_urls)
 
 
         #Segundo ejercicio
