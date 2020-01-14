@@ -64,3 +64,63 @@ o se utiliza el metodo `extract_first()`
 #### Extraer texto de una propiedad de una etiqueta
 
 ![]('./resources/extract-atrib-label.PNG')
+
+
+### XPATH
+Las etiquetas de un archivo HTML tiene una xpath en el navegador por el cual pueden ser buscadas.
+
+![]('./resources/xpath-navegador.PNG')
+
+Una vez copiado el xpath de la etiqueta utilizamos el siguiente comando:
+
+```
+response.xpath("/html/head/title").extract()
+```
+
+xpath-extract.PNG
+
+Si utilizamos el xpath de otra etiqueta dentro del documento html utilizamos el mismo comando
+
+```
+response.xpath('/html/body/div/div[2]/div[2]/h2').extract()
+```
+
+xpath-otra-etiqueta.PNG
+
+Para extraer solo el texto de la etiqueta utilizamos la funcion text() al final de el xpath precedido por un /
+
+```
+response.xpath('/html/body/div/div[2]/div[2]/h2/text()').extract()
+```
+xpath-only-text.PNG
+
+Para filtrar por atributos de una etiqueta se utiliza el @, se utiliza un doble // al comienzo para extraer todas las etiquetas que coincidan con ese xpath
+
+```
+response.xpath("//div[@class='quote']/span[@class='text']/text()").extract_first()
+```
+
+xpath-filtro-clase.PNG
+
+```
+response.xpath("//div[@class='quote']/span/a/@href").extract_first()
+```
+
+xpath-filtro-href.PNG
+
+
+### scrapy startproject 'projectname'
+
+Iniciamos un nuevo proyecto con el comandos
+```
+scrapy startproject arania_basica
+```
+arania-project.PNG
+
+Para iniciar la araña nos dirigimos al directorio donde se encuentra un archivo de extension .cfg y ejecutamos el siguiente comando
+
+```
+scrapy crawl nombre_araña
+```
+
+scrapy-crawl-aranita.PNG
