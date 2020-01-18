@@ -11,15 +11,15 @@ def guardar_archivo(titulo, precio, links):
             spamwriter.writerow(row)
 
 def escribir_archivo(ruta_archivo, lineas_a_escribir):
-            try:
-                archivo_escritura = open(ruta_archivo, mode="a")
-                archivo_escritura.writelines(lineas_a_escribir)
-                archivo_escritura.close()
-            except Exception as error:
-                print('Error archivo')
+    try:
+        archivo_escritura = open(ruta_archivo, mode="a")
+        archivo_escritura.writelines(lineas_a_escribir)
+        archivo_escritura.close()
+    except Exception as error:
+        print('Error archivo', error)
 
 def guardar_txt(titulos, precios, links_imagenes):
-    path_archivo = "L:/Familia/Documents/2019B-OCTAVOSEMESTRE/Python/py-diaz-yanangomez-leslie-mishell/clases/06-scrapy/01-aranita-basica/books.txt"
+    path_archivo = "./books.txt"
     books = []
     for x in range(0, len(titulos)):
         book = "\nTitulo: " + titulos[x] + "\n" + "Precio: " + precios[x] + "\n" + "URL imagen: " + links_imagenes[x] + "\n"
@@ -67,6 +67,7 @@ class IntroSpider(scrapy.Spider):
 
         precios_float = list(map(priceToFloat, precios))
         links_imagenes = list(map(transformImageToLink, imagenes))
+
         guardar_archivo(titulos, precios, links_imagenes)
         guardar_txt(titulos, precios, links_imagenes)
         
