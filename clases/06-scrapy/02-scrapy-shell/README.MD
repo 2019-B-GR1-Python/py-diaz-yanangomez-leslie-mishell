@@ -12,15 +12,15 @@ conda install -c conda-forge scrapy
 ## Comandos Generales
 * `scrapy bench` .- Da las caracteristicas para poder hacer web scraping o web crawling de ese computador
 
-![]('./resources/scrapy-view-bien.PNG')
+![](resources/scrapy-view-bien.PNG)
 
 * `scrapy settings`. - Visualizar las configuraciones extra
 
-![]('./resources/scrapy-view-bien.PNG')
+![](resources/scrapy-view-bien.PNG)
 
 * `scrapy version`. - Visualizar la version de Scrapy
 
-![]('./resources/scrapy-view-bien.PNG')
+![](resources/scrapy-view-bien.PNG)
 
 
 ### scrapy view 'url'
