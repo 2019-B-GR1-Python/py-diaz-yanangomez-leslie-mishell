@@ -66,12 +66,12 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # Validacionnes, transformaciones o guardar en base de datos en los items
 ITEM_PIPELINES = {
-    'spider_fybeca.pipelines.SoloCapsulasPipeline': 300,
-    'spider_fybeca.pipelines.TransformarTituloAMinusculasPipeline': 200,
+    #'spider_fybeca.pipelines.SoloCapsulasPipeline': 300,
+    #'spider_fybeca.pipelines.TransformarTituloAMinusculasPipeline': 200,
 }
 
-FEED_FORMAT = 'json'
-FEED_URI = 'tmp/productos-fybeca.json'
+FEED_FORMAT = 'csv'
+FEED_URI = 'tmp/productos-fybeca.csv'
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
